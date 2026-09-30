@@ -1,0 +1,1921 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>ENERGY CORE | Suporte em TI Percorre</title>
+
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            scroll-behavior: smooth;
+        }
+
+        body {
+            font-family: Arial, Helvetica, sans-serif;
+            background:
+                radial-gradient(circle at 20% 20%, rgba(0, 174, 255, 0.08), transparent 30%),
+                radial-gradient(circle at 80% 80%, rgba(0, 119, 255, 0.08), transparent 30%),
+                #050911;
+            color: #e8f7ff;
+            min-height: 100vh;
+        }
+
+        body::before {
+            content: "";
+            position: fixed;
+            inset: 0;
+            pointer-events: none;
+            background-image:
+                linear-gradient(rgba(0, 174, 255, 0.025) 1px, transparent 1px),
+                linear-gradient(90deg, rgba(0, 174, 255, 0.025) 1px, transparent 1px);
+            background-size: 50px 50px;
+            z-index: -1;
+        }
+
+        /* ================= HEADER ================= */
+
+        header {
+            position: sticky;
+            top: 0;
+            z-index: 1000;
+            background: rgba(4, 9, 17, 0.94);
+            backdrop-filter: blur(12px);
+            border-bottom: 1px solid #12304d;
+        }
+
+        .header-content {
+            max-width: 1200px;
+            margin: auto;
+            padding: 18px 25px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            gap: 20px;
+        }
+
+        .logo {
+            font-size: 26px;
+            font-weight: 900;
+            letter-spacing: 3px;
+            color: #00c6ff;
+            text-shadow: 0 0 15px rgba(0, 198, 255, 0.5);
+        }
+
+        .turma {
+            font-size: 12px;
+            color: #91a9bd;
+            margin-top: 5px;
+        }
+
+        .status {
+            font-size: 12px;
+            color: #4dff91;
+            margin-bottom: 5px;
+        }
+
+        nav {
+            display: flex;
+            gap: 8px;
+            flex-wrap: wrap;
+            justify-content: center;
+        }
+
+        nav a {
+            text-decoration: none;
+            color: #a9c5d9;
+            font-size: 12px;
+            font-weight: bold;
+            padding: 9px 12px;
+            border-radius: 8px;
+            transition: 0.25s;
+        }
+
+        nav a:hover {
+            color: #00c6ff;
+            background: rgba(0, 198, 255, 0.08);
+        }
+
+        /* ================= GERAL ================= */
+
+        main {
+            max-width: 1200px;
+            margin: auto;
+            padding: 40px 20px 80px;
+        }
+
+        section {
+            margin-bottom: 70px;
+            scroll-margin-top: 100px;
+        }
+
+        .section-title {
+            font-size: 30px;
+            margin-bottom: 10px;
+            color: #f2fbff;
+        }
+
+        .section-title span {
+            color: #00c6ff;
+        }
+
+        .section-description {
+            color: #8da4b8;
+            margin-bottom: 30px;
+            line-height: 1.6;
+        }
+
+        /* ================= HERO ================= */
+
+        .hero {
+            min-height: 420px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            gap: 40px;
+            padding: 70px 0;
+        }
+
+        .hero-text {
+            flex: 1;
+        }
+
+        .hero-label {
+            color: #00c6ff;
+            font-size: 13px;
+            font-weight: bold;
+            letter-spacing: 3px;
+            margin-bottom: 15px;
+        }
+
+        .hero h1 {
+            font-size: clamp(45px, 7vw, 80px);
+            line-height: 0.95;
+            letter-spacing: -3px;
+            margin-bottom: 25px;
+        }
+
+        .hero h1 span {
+            color: #00c6ff;
+            text-shadow: 0 0 25px rgba(0, 198, 255, 0.35);
+        }
+
+        .hero p {
+            max-width: 650px;
+            color: #9bb0c2;
+            font-size: 17px;
+            line-height: 1.7;
+        }
+
+        .hero-box {
+            width: 320px;
+            min-height: 270px;
+            border: 1px solid #17476a;
+            background: linear-gradient(145deg, #0a1523, #050a12);
+            border-radius: 20px;
+            padding: 30px;
+            box-shadow: 0 0 35px rgba(0, 170, 255, 0.08);
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+        }
+
+        .hero-box .power-icon {
+            font-size: 65px;
+            margin-bottom: 15px;
+        }
+
+        .hero-box h3 {
+            color: #00c6ff;
+            margin-bottom: 10px;
+        }
+
+        .hero-box p {
+            font-size: 13px;
+        }
+
+        /* ================= CARDS ================= */
+
+        .cards {
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            gap: 18px;
+        }
+
+        .card {
+            background: rgba(9, 18, 30, 0.88);
+            border: 1px solid #15334c;
+            border-radius: 15px;
+            padding: 23px;
+            transition: 0.3s;
+        }
+
+        .card:hover {
+            transform: translateY(-5px);
+            border-color: #00aeea;
+            box-shadow: 0 12px 35px rgba(0, 174, 255, 0.08);
+        }
+
+        .card-icon {
+            font-size: 35px;
+            margin-bottom: 15px;
+        }
+
+        .card h3 {
+            color: #00c6ff;
+            margin-bottom: 10px;
+        }
+
+        .card p {
+            color: #8da4b8;
+            line-height: 1.6;
+            font-size: 14px;
+        }
+
+        /* ================= TENSÕES ================= */
+
+        .voltage-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 20px;
+        }
+
+        .voltage {
+            padding: 30px;
+            background: #081321;
+            border: 1px solid #164463;
+            border-radius: 16px;
+            text-align: center;
+        }
+
+        .voltage strong {
+            display: block;
+            font-size: 35px;
+            color: #00c6ff;
+            margin-bottom: 10px;
+        }
+
+        .voltage span {
+            color: #8da4b8;
+            line-height: 1.5;
+            font-size: 14px;
+        }
+
+        /* ================= PRESENÇA ================= */
+
+        .presence-panel {
+            background: linear-gradient(145deg, #081321, #050b13);
+            border: 1px solid #17435f;
+            border-radius: 20px;
+            padding: 30px;
+        }
+
+        .stats {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 18px;
+            margin-bottom: 30px;
+        }
+
+        .stat {
+            background: #060e18;
+            border: 1px solid #16344d;
+            border-radius: 15px;
+            padding: 25px;
+            text-align: center;
+        }
+
+        .stat-number {
+            font-size: 38px;
+            font-weight: bold;
+            color: #00c6ff;
+            margin-bottom: 8px;
+        }
+
+        .stat-label {
+            color: #8da4b8;
+            font-size: 12px;
+            letter-spacing: 1px;
+        }
+
+        .presence-form {
+            display: flex;
+            gap: 12px;
+        }
+
+        input {
+            flex: 1;
+            padding: 15px;
+            background: #050b13;
+            border: 1px solid #1a405c;
+            border-radius: 10px;
+            color: white;
+            outline: none;
+            font-size: 14px;
+        }
+
+        input:focus {
+            border-color: #00c6ff;
+            box-shadow: 0 0 15px rgba(0, 198, 255, 0.08);
+        }
+
+        .btn {
+            border: none;
+            border-radius: 10px;
+            padding: 14px 20px;
+            background: #00aeea;
+            color: #00111a;
+            font-weight: bold;
+            cursor: pointer;
+            transition: 0.25s;
+        }
+
+        .btn:hover {
+            background: #42d5ff;
+            transform: translateY(-2px);
+        }
+
+        .btn.danger {
+            background: #8f2636;
+            color: white;
+        }
+
+        .btn.danger:hover {
+            background: #bd3045;
+        }
+
+        /* ================= QUIZ ================= */
+
+        .quiz-user {
+            background: #071523;
+            border: 1px solid #17435f;
+            padding: 15px 20px;
+            border-radius: 12px;
+            margin-bottom: 20px;
+            color: #00c6ff;
+            font-weight: bold;
+        }
+
+        .progress-container {
+            width: 100%;
+            height: 8px;
+            background: #0b1724;
+            border-radius: 10px;
+            overflow: hidden;
+            margin-bottom: 30px;
+            border: 1px solid #15354e;
+        }
+
+        .progress {
+            height: 100%;
+            width: 0%;
+            background: linear-gradient(90deg, #0077ff, #00c6ff);
+            transition: width 0.4s;
+        }
+
+        .question {
+            background: rgba(8, 17, 29, 0.9);
+            border: 1px solid #173a55;
+            border-radius: 16px;
+            padding: 25px;
+            margin-bottom: 20px;
+        }
+
+        .question h3 {
+            margin-bottom: 20px;
+            color: #f1fbff;
+        }
+
+        .option {
+            width: 100%;
+            text-align: left;
+            padding: 15px;
+            margin-top: 10px;
+            border: 1px solid #1b405b;
+            border-radius: 10px;
+            background: #07111c;
+            color: #bcd0df;
+            cursor: pointer;
+            transition: 0.25s;
+        }
+
+        .option:hover:not(:disabled) {
+            border-color: #00c6ff;
+            color: white;
+            background: #0b1a2a;
+        }
+
+        .option:disabled {
+            cursor: default;
+        }
+
+        .option.correct {
+            background: rgba(0, 190, 100, 0.15);
+            border-color: #23e88a;
+            color: #54ffa9;
+        }
+
+        .option.wrong {
+            background: rgba(255, 40, 70, 0.12);
+            border-color: #ff415d;
+            color: #ff7185;
+        }
+
+        /* ================= RESULTADO ================= */
+
+        #resultado {
+            display: none;
+            text-align: center;
+            background: linear-gradient(145deg, #081725, #050b13);
+            border: 1px solid #1b506e;
+            border-radius: 20px;
+            padding: 50px 25px;
+            margin-bottom: 50px;
+        }
+
+        #pontuacao {
+            font-size: 70px;
+            font-weight: bold;
+            color: #00c6ff;
+            margin: 15px 0;
+            text-shadow: 0 0 25px rgba(0, 198, 255, 0.25);
+        }
+
+        #mensagem {
+            color: #a9bdcc;
+        }
+
+        /* ================= TABELA ================= */
+
+        .table-container {
+            overflow-x: auto;
+            background: #07111c;
+            border: 1px solid #163750;
+            border-radius: 15px;
+        }
+
+        table {
+            width: 100%;
+            border-collapse: collapse;
+        }
+
+        th,
+        td {
+            padding: 16px;
+            text-align: left;
+            border-bottom: 1px solid #132d42;
+        }
+
+        th {
+            color: #00c6ff;
+            font-size: 12px;
+            letter-spacing: 1px;
+        }
+
+        td {
+            color: #b8cad7;
+        }
+
+        td.score {
+            color: #4dff91;
+            font-weight: bold;
+        }
+
+        .empty {
+            text-align: center;
+            color: #647c8e;
+            padding: 30px;
+        }
+
+        /* ================= ADMIN ================= */
+
+        #adminPainel {
+            display: none;
+            margin-top: 20px;
+            padding: 25px;
+            background: #080f20;
+            border: 1px solid #263b60;
+            border-radius: 15px;
+        }
+
+        #adminPainel h3 {
+            color: #00c6ff;
+            margin-bottom: 10px;
+        }
+
+        #adminPainel p {
+            color: #8298aa;
+            margin-bottom: 15px;
+        }
+
+        #erroAdmin {
+            display: none;
+            color: #ff4444 !important;
+            margin-top: 15px;
+        }
+
+        /* ================= FOOTER ================= */
+
+        footer {
+            border-top: 1px solid #12304a;
+            padding: 30px 20px;
+            text-align: center;
+            color: #60798c;
+            font-size: 12px;
+        }
+
+        footer strong {
+            color: #00c6ff;
+        }
+
+        /* ================= RESPONSIVO ================= */
+
+        @media (max-width: 900px) {
+
+            .cards {
+                grid-template-columns: repeat(2, 1fr);
+            }
+
+            .hero {
+                flex-direction: column;
+                align-items: flex-start;
+            }
+
+            .hero-box {
+                width: 100%;
+            }
+        }
+
+        @media (max-width: 650px) {
+
+            .header-content {
+                flex-direction: column;
+            }
+
+            nav {
+                width: 100%;
+            }
+
+            .cards,
+            .voltage-grid,
+            .stats {
+                grid-template-columns: 1fr;
+            }
+
+            .presence-form {
+                flex-direction: column;
+            }
+
+            .hero h1 {
+                font-size: 50px;
+            }
+        }
+
+    </style>
+</head>
+
+<body>
+
+<header>
+
+    <div class="header-content">
+
+        <div>
+
+            <div class="logo">
+                ENERGY CORE
+            </div>
+
+            <div class="turma">
+                Turma: Percorre Suporte em TI , Manhã
+            </div>
+
+        </div>
+
+        <div>
+
+            <div class="status">
+                ● SISTEMA ONLINE
+            </div>
+
+            <nav>
+                <a href="#presenca">PRESENÇA</a>
+                <a href="#sobre">SOBRE</a>
+                <a href="#quiz">QUIZ</a>
+                <a href="#ranking">PARTICIPANTES</a>
+            </nav>
+
+        </div>
+
+    </div>
+
+</header>
+
+
+<main>
+
+    <!-- ================= HERO ================= -->
+
+    <section class="hero">
+
+        <div class="hero-text">
+
+            <div class="hero-label">
+                SUPORTE EM TI • HARDWARE
+            </div>
+
+            <h1>
+                ENERGIA<br>
+                <span>DO PC</span>
+            </h1>
+
+            <p>
+                Descubra como a fonte de alimentação transforma,
+                distribui e mantém a energia necessária para que
+                todos os componentes do computador funcionem corretamente.
+            </p>
+
+        </div>
+
+
+        <div class="hero-box">
+
+            <div class="power-icon">
+                ⚡
+            </div>
+
+            <h3>
+                POWER SUPPLY UNIT
+            </h3>
+
+            <p>
+                A fonte de alimentação é responsável por converter
+                a energia elétrica da tomada em tensões adequadas
+                para os componentes do computador.
+            </p>
+
+        </div>
+
+    </section>
+
+
+    <!-- ================= PRESENÇA ================= -->
+
+    <section id="presenca">
+
+        <h2 class="section-title">
+            REGISTRO DE <span>PRESENÇA</span>
+        </h2>
+
+        <p class="section-description">
+            Registre sua presença antes de participar do quiz.
+        </p>
+
+
+        <div class="presence-panel">
+
+            <div class="stats">
+
+                <div class="stat">
+
+                    <div
+                        class="stat-number"
+                        id="totalPessoas"
+                    >
+                        0
+                    </div>
+
+                    <div class="stat-label">
+                        PESSOAS REGISTRADAS
+                    </div>
+
+                </div>
+
+
+                <div class="stat">
+
+                    <div
+                        class="stat-number"
+                        id="totalRespostas"
+                    >
+                        0
+                    </div>
+
+                    <div class="stat-label">
+                        QUIZZES REALIZADOS
+                    </div>
+
+                </div>
+
+
+                <div class="stat">
+
+                    <div
+                        class="stat-number"
+                        id="mediaPontos"
+                    >
+                        0
+                    </div>
+
+                    <div class="stat-label">
+                        MÉDIA DE PONTOS
+                    </div>
+
+                </div>
+
+            </div>
+
+
+            <div class="presence-form">
+
+                <input
+                    type="text"
+                    id="nome"
+                    placeholder="Digite seu nome..."
+                    maxlength="50"
+                >
+
+                <button
+                    class="btn"
+                    onclick="registrarPresenca()"
+                >
+                    REGISTRAR PRESENÇA
+                </button>
+
+            </div>
+
+        </div>
+
+    </section>
+
+
+    <!-- ================= SOBRE ================= -->
+
+    <section id="sobre">
+
+        <h2 class="section-title">
+            SOBRE A <span>FONTE</span>
+        </h2>
+
+        <p class="section-description">
+            A fonte de alimentação, também conhecida como PSU,
+            transforma a energia elétrica da tomada em tensões
+            adequadas para os componentes do computador.
+        </p>
+
+
+        <div class="cards">
+
+            <div class="card">
+
+                <div class="card-icon">
+                    🧠
+                </div>
+
+                <h3>
+                    PROCESSADOR
+                </h3>
+
+                <p>
+                    Recebe energia através da placa-mãe e precisa
+                    de alimentação estável para funcionar corretamente.
+                </p>
+
+            </div>
+
+
+            <div class="card">
+
+                <div class="card-icon">
+                    🎮
+                </div>
+
+                <h3>
+                    PLACA DE VÍDEO
+                </h3>
+
+                <p>
+                    GPUs mais potentes podem utilizar conectores
+                    adicionais diretamente ligados à fonte.
+                </p>
+
+            </div>
+
+
+            <div class="card">
+
+                <div class="card-icon">
+                    💾
+                </div>
+
+                <h3>
+                    ARMAZENAMENTO
+                </h3>
+
+                <p>
+                    SSDs e HDs também necessitam de alimentação
+                    elétrica para funcionar.
+                </p>
+
+            </div>
+
+
+            <div class="card">
+
+                <div class="card-icon">
+                    ❄️
+                </div>
+
+                <h3>
+                    REFRIGERAÇÃO
+                </h3>
+
+                <p>
+                    Ventoinhas e outros sistemas de refrigeração
+                    também utilizam energia fornecida pelo computador.
+                </p>
+
+            </div>
+
+        </div>
+
+    </section>
+
+
+    <!-- ================= TENSÕES ================= -->
+
+    <section>
+
+        <h2 class="section-title">
+            PRINCIPAIS <span>TENSÕES</span>
+        </h2>
+
+        <p class="section-description">
+            As fontes ATX fornecem diferentes linhas de tensão
+            para alimentar os componentes do computador.
+        </p>
+
+
+        <div class="voltage-grid">
+
+            <div class="voltage">
+
+                <strong>
+                    +12V
+                </strong>
+
+                <span>
+                    Usada principalmente pelo processador,
+                    placa de vídeo e motores.
+                </span>
+
+            </div>
+
+
+            <div class="voltage">
+
+                <strong>
+                    +5V
+                </strong>
+
+                <span>
+                    Utilizada por alguns circuitos e dispositivos
+                    presentes no computador.
+                </span>
+
+            </div>
+
+
+            <div class="voltage">
+
+                <strong>
+                    +3.3V
+                </strong>
+
+                <span>
+                    Utilizada por componentes eletrônicos e
+                    algumas linhas da placa-mãe.
+                </span>
+
+            </div>
+
+        </div>
+
+    </section>
+
+
+    <!-- ================= QUIZ ================= -->
+
+    <section id="quiz">
+
+        <h2 class="section-title">
+            KNOWLEDGE <span>QUIZ</span>
+        </h2>
+
+        <p class="section-description">
+            Teste seus conhecimentos sobre fontes de alimentação.
+        </p>
+
+
+        <div
+            class="quiz-user"
+            id="usuarioQuiz"
+        >
+            Registre sua presença primeiro.
+        </div>
+
+
+        <div class="progress-container">
+
+            <div
+                class="progress"
+                id="progress"
+            ></div>
+
+        </div>
+
+
+        <!-- PERGUNTA 1 -->
+
+        <div class="question">
+
+            <h3>
+                1. Qual é a principal função de uma fonte de alimentação?
+            </h3>
+
+            <button
+                class="option"
+                onclick="responder(this, false)"
+            >
+                A) Armazenar arquivos
+            </button>
+
+            <button
+                class="option"
+                onclick="responder(this, true)"
+            >
+                B) Transformar e distribuir energia elétrica para os componentes
+            </button>
+
+            <button
+                class="option"
+                onclick="responder(this, false)"
+            >
+                C) Aumentar a velocidade da internet
+            </button>
+
+            <button
+                class="option"
+                onclick="responder(this, false)"
+            >
+                D) Resfriar o processador
+            </button>
+
+        </div>
+
+
+        <!-- PERGUNTA 2 -->
+
+        <div class="question">
+
+            <h3>
+                2. Qual tensão é normalmente a mais importante para componentes de alto consumo, como CPU e GPU?
+            </h3>
+
+            <button
+                class="option"
+                onclick="responder(this, false)"
+            >
+                A) +1V
+            </button>
+
+            <button
+                class="option"
+                onclick="responder(this, false)"
+            >
+                B) +3.3V
+            </button>
+
+            <button
+                class="option"
+                onclick="responder(this, false)"
+            >
+                C) +5V
+            </button>
+
+            <button
+                class="option"
+                onclick="responder(this, true)"
+            >
+                D) +12V
+            </button>
+
+        </div>
+
+
+        <!-- PERGUNTA 3 -->
+
+        <div class="question">
+
+            <h3>
+                3. O que significa PSU?
+            </h3>
+
+            <button
+                class="option"
+                onclick="responder(this, false)"
+            >
+                A) Personal System Unit
+            </button>
+
+            <button
+                class="option"
+                onclick="responder(this, true)"
+            >
+                B) Power Supply Unit
+            </button>
+
+            <button
+                class="option"
+                onclick="responder(this, false)"
+            >
+                C) Processor System Utility
+            </button>
+
+            <button
+                class="option"
+                onclick="responder(this, false)"
+            >
+                D) Power System User
+            </button>
+
+        </div>
+
+
+        <!-- PERGUNTA 4 -->
+
+        <div class="question">
+
+            <h3>
+                4. O que pode acontecer se uma fonte não tiver potência adequada para o computador?
+            </h3>
+
+            <button
+                class="option"
+                onclick="responder(this, true)"
+            >
+                A) O computador pode apresentar instabilidade ou desligamentos
+            </button>
+
+            <button
+                class="option"
+                onclick="responder(this, false)"
+            >
+                B) O monitor fica maior
+            </button>
+
+            <button
+                class="option"
+                onclick="responder(this, false)"
+            >
+                C) O teclado muda de idioma
+            </button>
+
+            <button
+                class="option"
+                onclick="responder(this, false)"
+            >
+                D) O SSD aumenta de capacidade
+            </button>
+
+        </div>
+
+
+        <!-- PERGUNTA 5 -->
+
+        <div class="question">
+
+            <h3>
+                5. Qual destes componentes pode consumir bastante energia em um PC gamer?
+            </h3>
+
+            <button
+                class="option"
+                onclick="responder(this, false)"
+            >
+                A) Mouse
+            </button>
+
+            <button
+                class="option"
+                onclick="responder(this, true)"
+            >
+                B) Placa de vídeo
+            </button>
+
+            <button
+                class="option"
+                onclick="responder(this, false)"
+            >
+                C) Teclado
+            </button>
+
+            <button
+                class="option"
+                onclick="responder(this, false)"
+            >
+                D) Cabo HDMI
+            </button>
+
+        </div>
+
+    </section>
+
+
+    <!-- ================= RESULTADO ================= -->
+
+    <section id="resultado">
+
+        <h2>
+            RESULTADO
+        </h2>
+
+        <div id="pontuacao">
+            0 / 5
+        </div>
+
+        <p id="mensagem"></p>
+
+    </section>
+
+
+    <!-- ================= PARTICIPANTES ================= -->
+
+    <section id="ranking">
+
+        <h2 class="section-title">
+            PARTICIPANTES DA <span>TURMA</span>
+        </h2>
+
+        <p class="section-description">
+            Lista de presença e pontuação dos participantes.
+        </p>
+
+
+        <div class="table-container">
+
+            <table>
+
+                <thead>
+
+                    <tr>
+
+                        <th>
+                            #
+                        </th>
+
+                        <th>
+                            NOME
+                        </th>
+
+                        <th>
+                            PONTUAÇÃO
+                        </th>
+
+                    </tr>
+
+                </thead>
+
+
+                <tbody id="lista"></tbody>
+
+            </table>
+
+        </div>
+
+
+        <br>
+
+
+        <button
+            class="btn danger"
+            onclick="abrirAdmin()"
+        >
+            🔐 ADMINISTRAÇÃO
+        </button>
+
+
+        <!-- PAINEL ADMIN -->
+
+        <div id="adminPainel">
+
+            <h3>
+                🔐 Área do Administrador
+            </h3>
+
+            <p>
+                Digite a senha para apagar a lista de presença.
+            </p>
+
+
+            <div class="presence-form">
+
+                <input
+                    type="password"
+                    id="senhaAdmin"
+                    placeholder="Senha de administrador..."
+                >
+
+                <button
+                    class="btn"
+                    onclick="verificarSenha()"
+                >
+                    CONFIRMAR
+                </button>
+
+            </div>
+
+
+            <p id="erroAdmin">
+                ❌ Senha incorreta.
+            </p>
+
+        </div>
+
+    </section>
+
+</main>
+
+
+<footer>
+
+    <strong>
+        ENERGY CORE
+    </strong>
+
+    <br><br>
+
+    Projeto desenvolvido pela turma
+    <strong>
+        Suporte em TI, manhã
+    </strong>.
+
+</footer>
+
+
+<script>
+
+    /* =====================================================
+       SISTEMA DE PARTICIPANTES
+       ===================================================== */
+
+    let pontos = 0;
+    let perguntasRespondidas = 0;
+    let nomeAtual = "";
+
+    let participantes =
+        JSON.parse(
+            localStorage.getItem(
+                "participantesEnergyCore"
+            )
+        ) || [];
+
+
+    /* =====================================================
+       SENHA DO ADMINISTRADOR
+       ===================================================== */
+
+    const SENHA_ADMIN = "admin123";
+
+
+    /* =====================================================
+       ATUALIZAR PAINEL
+       ===================================================== */
+
+    function atualizarPainel() {
+
+        document.getElementById(
+            "totalPessoas"
+        ).textContent =
+            participantes.length;
+
+
+        const realizados =
+            participantes.filter(
+                pessoa =>
+                    pessoa.pontos !== null
+            );
+
+
+        document.getElementById(
+            "totalRespostas"
+        ).textContent =
+            realizados.length;
+
+
+        if (
+            realizados.length > 0
+        ) {
+
+            const soma =
+                realizados.reduce(
+                    (total, pessoa) =>
+                        total + pessoa.pontos,
+                    0
+                );
+
+
+            const media =
+                soma / realizados.length;
+
+
+            document.getElementById(
+                "mediaPontos"
+            ).textContent =
+                media.toFixed(1);
+
+        } else {
+
+            document.getElementById(
+                "mediaPontos"
+            ).textContent =
+                "0";
+
+        }
+
+    }
+
+
+    /* =====================================================
+       REGISTRAR PRESENÇA
+       ===================================================== */
+
+    function registrarPresenca() {
+
+        const campo =
+            document.getElementById(
+                "nome"
+            );
+
+
+        const nome =
+            campo.value.trim();
+
+
+        if (!nome) {
+
+            alert(
+                "Digite seu nome antes de continuar."
+            );
+
+            return;
+
+        }
+
+
+        nomeAtual = nome;
+
+
+        const existente =
+            participantes.find(
+                pessoa =>
+                    pessoa.nome.toLowerCase() ===
+                    nome.toLowerCase()
+            );
+
+
+        if (existente) {
+
+            alert(
+                "Esse nome já está registrado!"
+            );
+
+
+            nomeAtual =
+                existente.nome;
+
+        } else {
+
+            participantes.push({
+                nome: nome,
+                pontos: null
+            });
+
+        }
+
+
+        salvarDados();
+
+
+        document.getElementById(
+            "usuarioQuiz"
+        ).textContent =
+            "Participante: " + nomeAtual;
+
+
+        document
+            .getElementById("quiz")
+            .scrollIntoView({
+                behavior: "smooth"
+            });
+
+
+        campo.value = "";
+
+
+        atualizarLista();
+        atualizarPainel();
+
+    }
+
+
+    /* =====================================================
+       RESPONDER QUESTÃO
+       ===================================================== */
+
+    function responder(
+        botao,
+        correta
+    ) {
+
+        if (!nomeAtual) {
+
+            alert(
+                "Primeiro registre sua presença!"
+            );
+
+
+            document
+                .getElementById(
+                    "presenca"
+                )
+                .scrollIntoView({
+                    behavior: "smooth"
+                });
+
+
+            return;
+
+        }
+
+
+        const pergunta =
+            botao.parentElement;
+
+
+        if (
+            pergunta.classList.contains(
+                "respondida"
+            )
+        ) {
+
+            return;
+
+        }
+
+
+        pergunta.classList.add(
+            "respondida"
+        );
+
+
+        const botoes =
+            pergunta.querySelectorAll(
+                ".option"
+            );
+
+
+        botoes.forEach(
+            b =>
+                b.disabled = true
+        );
+
+
+        if (correta) {
+
+            botao.classList.add(
+                "correct"
+            );
+
+
+            pontos++;
+
+        } else {
+
+            botao.classList.add(
+                "wrong"
+            );
+
+
+            botoes.forEach(
+                b => {
+
+                    const onclick =
+                        b.getAttribute(
+                            "onclick"
+                        );
+
+
+                    if (
+                        onclick &&
+                        onclick.includes(
+                            "true"
+                        )
+                    ) {
+
+                        b.classList.add(
+                            "correct"
+                        );
+
+                    }
+
+                }
+            );
+
+        }
+
+
+        perguntasRespondidas++;
+
+
+        const progresso =
+            (
+                perguntasRespondidas / 5
+            ) * 100;
+
+
+        document.getElementById(
+            "progress"
+        ).style.width =
+            progresso + "%";
+
+
+        if (
+            perguntasRespondidas === 5
+        ) {
+
+            setTimeout(
+                mostrarResultado,
+                700
+            );
+
+        }
+
+    }
+
+
+    /* =====================================================
+       MOSTRAR RESULTADO
+       ===================================================== */
+
+    function mostrarResultado() {
+
+        const resultado =
+            document.getElementById(
+                "resultado"
+            );
+
+
+        const pontuacao =
+            document.getElementById(
+                "pontuacao"
+            );
+
+
+        const mensagem =
+            document.getElementById(
+                "mensagem"
+            );
+
+
+        pontuacao.textContent =
+            pontos + " / 5";
+
+
+        if (
+            pontos === 5
+        ) {
+
+            mensagem.textContent =
+                "🏆 SISTEMA DOMINADO!";
+
+        } else if (
+            pontos >= 3
+        ) {
+
+            mensagem.textContent =
+                "⚡ Muito bom! Você conhece bastante sobre fontes.";
+
+        } else if (
+            pontos >= 1
+        ) {
+
+            mensagem.textContent =
+                "💡 Você está começando. Continue estudando hardware!";
+
+        } else {
+
+            mensagem.textContent =
+                "📚 Hora de revisar os conhecimentos sobre fontes.";
+
+        }
+
+
+        const participante =
+            participantes.find(
+                pessoa =>
+                    pessoa.nome === nomeAtual
+            );
+
+
+        if (participante) {
+
+            participante.pontos =
+                pontos;
+
+        }
+
+
+        salvarDados();
+
+
+        atualizarLista();
+        atualizarPainel();
+
+
+        resultado.style.display =
+            "block";
+
+
+        resultado.scrollIntoView({
+            behavior: "smooth"
+        });
+
+    }
+
+
+    /* =====================================================
+       SALVAR DADOS
+       ===================================================== */
+
+    function salvarDados() {
+
+        localStorage.setItem(
+            "participantesEnergyCore",
+            JSON.stringify(
+                participantes
+            )
+        );
+
+    }
+
+
+    /* =====================================================
+       ATUALIZAR LISTA
+       ===================================================== */
+
+    function atualizarLista() {
+
+        const lista =
+            document.getElementById(
+                "lista"
+            );
+
+
+        lista.innerHTML = "";
+
+
+        if (
+            participantes.length === 0
+        ) {
+
+            lista.innerHTML = `
+
+                <tr>
+
+                    <td
+                        colspan="3"
+                        class="empty"
+                    >
+                        Nenhum participante registrado ainda.
+                    </td>
+
+                </tr>
+
+            `;
+
+            return;
+
+        }
+
+
+        participantes.forEach(
+            (
+                pessoa,
+                index
+            ) => {
+
+                const linha =
+                    document.createElement(
+                        "tr"
+                    );
+
+
+                linha.innerHTML = `
+
+                    <td>
+                        ${index + 1}
+                    </td>
+
+                    <td>
+                        ${pessoa.nome}
+                    </td>
+
+                    <td class="score">
+
+                        ${
+                            pessoa.pontos === null
+                            ? "Aguardando quiz"
+                            : pessoa.pontos + " / 5"
+                        }
+
+                    </td>
+
+                `;
+
+
+                lista.appendChild(
+                    linha
+                );
+
+            }
+        );
+
+    }
+
+
+    /* =====================================================
+       ABRIR ADMIN
+       ===================================================== */
+
+    function abrirAdmin() {
+
+        const painel =
+            document.getElementById(
+                "adminPainel"
+            );
+
+
+        if (
+            painel.style.display === "none" ||
+            painel.style.display === ""
+        ) {
+
+            painel.style.display =
+                "block";
+
+
+            document
+                .getElementById(
+                    "senhaAdmin"
+                )
+                .focus();
+
+        } else {
+
+            painel.style.display =
+                "none";
+
+        }
+
+    }
+
+
+    /* =====================================================
+       VERIFICAR SENHA
+       ===================================================== */
+
+    function verificarSenha() {
+
+        const senha =
+            document.getElementById(
+                "senhaAdmin"
+            ).value;
+
+
+        const erro =
+            document.getElementById(
+                "erroAdmin"
+            );
+
+
+        if (
+            senha === SENHA_ADMIN
+        ) {
+
+            erro.style.display =
+                "none";
+
+
+            const confirmar =
+                confirm(
+
+                    "⚠️ ATENÇÃO!\n\n" +
+
+                    "Isso irá apagar TODOS os participantes " +
+
+                    "e suas pontuações.\n\n" +
+
+                    "Deseja realmente continuar?"
+
+                );
+
+
+            if (!confirmar) {
+
+                return;
+
+            }
+
+
+            localStorage.removeItem(
+                "participantesEnergyCore"
+            );
+
+
+            participantes = [];
+
+            nomeAtual = "";
+
+            pontos = 0;
+
+            perguntasRespondidas = 0;
+
+
+            alert(
+                "✅ Lista de presença apagada com sucesso!"
+            );
+
+
+            location.reload();
+
+        } else {
+
+            erro.style.display =
+                "block";
+
+
+            document.getElementById(
+                "senhaAdmin"
+            ).value = "";
+
+
+            document
+                .getElementById(
+                    "senhaAdmin"
+                )
+                .focus();
+
+        }
+
+    }
+
+
+    /* =====================================================
+       ENTER NA SENHA DO ADMIN
+       ===================================================== */
+
+    document
+        .getElementById(
+            "senhaAdmin"
+        )
+        .addEventListener(
+            "keydown",
+            function(event) {
+
+                if (
+                    event.key === "Enter"
+                ) {
+
+                    verificarSenha();
+
+                }
+
+            }
+        );
+
+
+    /* =====================================================
+       INICIALIZAÇÃO
+       ===================================================== */
+
+    atualizarLista();
+    atualizarPainel();
+
+</script>
+
+</body>
+</html>
